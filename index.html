@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Untuk Kamu ❤️</title>
+
+<style>
+body{
+    margin:0;
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background: linear-gradient(135deg,#ff9a9e,#fad0c4);
+    font-family: Arial, sans-serif;
+    overflow:hidden;
+}
+
+.container{
+    text-align:center;
+    background:rgba(0,0,0,0.5);
+    padding:30px;
+    border-radius:20px;
+    color:white;
+    width:350px;
+    position:relative;
+}
+
+button{
+    padding:10px 25px;
+    margin:15px;
+    border:none;
+    border-radius:20px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+#yes{
+    background:#ff4d6d;
+    color:white;
+}
+
+#no{
+    background:#555;
+    color:white;
+    position:absolute;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin-top:15px;
+    transition:opacity 0.5s ease-in-out;
+}
+
+.heart{
+    position:absolute;
+    color:red;
+    font-size:20px;
+    animation:fall 5s linear infinite;
+}
+
+@keyframes fall{
+    0%{top:-10%; opacity:1;}
+    100%{top:110%; opacity:0;}
+}
+</style>
+</head>
+
+<body>
+
+<div class="container" id="page1">
+    <h2>Apakah kamu sayang aku? 💕</h2>
+    <button id="yes" onclick="showLove()">YES</button>
+    <button id="no">NO</button>
+</div>
+
+<div class="container" id="page2" style="display:none;">
+    <h2>Hii MyDeww <br> Happy Valentine ❤️</h2>
+
+    <p>
+        Tuhan baik sekali mempertemukan aku dengan kamu.<br>
+        Kamu bukan cuma bahagiaku,<br>
+        tapi alasan aku ingin jadi pria yang lebih baik setiap hari.
+    </p>
+
+    <p style="font-style:italic;">
+        "Lihatlah, cantik engkau, manisku, sungguh cantik engkau, bagaikan merpati matamu."<br>
+        – Kidung Agung 1:15
+    </p>
+
+    <img id="slideshow" src="1.jpeg">
+
+    <p style="margin-top:10px;">
+        Dari anak Network yang ingin romantis ala ala programmer 🤍
+    </p>
+</div>
+
+<script>
+document.addEventListener("DOMContentLoaded", function(){
+
+let noBtn = document.getElementById("no");
+
+noBtn.addEventListener("mouseover", function(){
+    let x = Math.random() * 250;
+    let y = Math.random() * 200;
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+});
+
+window.showLove = function(){
+    document.getElementById("page1").style.display="none";
+    document.getElementById("page2").style.display="block";
+    startSlide();
+    createHearts();
+    playMusic();
+}
+
+function startSlide(){
+    let images=[
+        "1.jpeg","2.jpeg","3.jpeg","4.jpeg","5.jpeg",
+        "6.jpeg","7.jpeg","8.jpeg","9.jpeg"
+    ];
+
+    let slide=document.getElementById("slideshow");
+    let i=0;
+
+    setInterval(function(){
+        i=(i+1)%images.length;
+        slide.src=images[i];
+    },2000);
+}
+
+function createHearts(){
+    setInterval(function(){
+        let heart=document.createElement("div");
+        heart.innerHTML="❤️";
+        heart.style.position="absolute";
+        heart.style.left=Math.random()*100+"vw";
+        heart.style.top="-20px";
+        heart.style.fontSize=(Math.random()*20+15)+"px";
+        document.body.appendChild(heart);
+
+        let fall=setInterval(function(){
+            heart.style.top=parseFloat(heart.style.top)+3+"px";
+        },20);
+
+        setTimeout(function(){
+            clearInterval(fall);
+            heart.remove();
+        },4000);
+
+    },300);
+}
+
+function playMusic(){
+    let music=document.createElement("iframe");
+    music.style.display="none";
+    music.src="https://www.youtube.com/embed/SgSOAPwTOdc?autoplay=1&loop=1&playlist=SgSOAPwTOdc";
+    music.allow="autoplay";
+    document.body.appendChild(music);
+}
+
+});
+</script>
+
+</body>
+</html>
