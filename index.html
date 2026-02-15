@@ -17,8 +17,8 @@ body{
 
 .container{
     text-align:center;
-    background:rgba(0,0,0,0.35);
-    padding:40px;
+    background:rgba(0,0,0,0.4);
+    padding:30px;
     border-radius:20px;
     color:white;
     width:350px;
@@ -44,6 +44,12 @@ button{
     background:#555;
     color:white;
     position:absolute;
+}
+
+img{
+    width:100%;
+    border-radius:15px;
+    margin-top:15px;
 }
 
 .fade{
@@ -79,24 +85,26 @@ button{
 
 <div class="container" id="page2" style="display:none;">
     <div class="fade">
-        <h2>Happy Valentine ❤️</h2>
+        <h2>Kamu Jawaban Doaku ❤️</h2>
+
         <p>
-            Dari semua jalur kehidupan yang Tuhan izinkan aku lalui,<br>
-            aku bersyukur karena akhirnya hatiku terhubung padamu. 💖<br><br>
-            Kamu bukan hanya bahagiaku hari ini,<br>
-            tapi doa yang ingin aku jaga seumur hidup.
+            Tuhan baik sekali mempertemukan aku dengan kamu.<br>
+            Kamu bukan cuma bahagiaku,<br>
+            tapi alasan aku ingin jadi pria yang lebih baik setiap hari.
         </p>
 
-        <p style="margin-top:20px; font-style:italic;">
-            "Kasih itu sabar; kasih itu murah hati;<br>
-            ia tidak cemburu. Ia tidak memegahkan diri<br>
-            dan tidak sombong." <br>
-            – 1 Korintus 13:4 ✝️
+        <p style="font-style:italic;">
+            "Demikianlah mereka bukan lagi dua,<br>
+            melainkan satu. Karena itu, apa yang telah dipersatukan Allah,<br>
+            tidak boleh diceraikan manusia."<br>
+            – Matius 19:6 ✝️
         </p>
 
-        <p style="margin-top:15px;">
-            – Dari pria yang mungkin banyak kurangnya,<br>
-            tapi sungguh-sungguh ingin mengasihimu 🤍
+        <img id="slideshow" src="foto1.jpg">
+
+        <p style="margin-top:10px;">
+            Aku mungkin bukan pria sempurna,<br>
+            tapi aku mau belajar mencintaimu dengan setia 🤍
         </p>
     </div>
 </div>
@@ -115,6 +123,15 @@ function showLove(){
     document.getElementById("page1").style.display="none";
     document.getElementById("page2").style.display="block";
     createHearts();
+    startSlide();
+
+    // Tambah lagu di sini
+    let music = document.createElement("iframe");
+    music.width="0";
+    music.height="0";
+    music.src="https://www.tiktok.com/@yourrmidnightt/video/7350278599636831494?q=nyoman%20paul%20the%20way%20you%20look%20at%20me&t=1771166115679";
+    music.allow="autoplay";
+    document.body.appendChild(music);
 }
 
 function createHearts(){
@@ -128,6 +145,15 @@ function createHearts(){
 
         setTimeout(()=>{heart.remove();},5000);
     },300);
+}
+
+function startSlide(){
+    let images=["foto1.jpg","foto2.jpg","foto3.jpg"];
+    let i=0;
+    setInterval(function(){
+        i=(i+1)%images.length;
+        document.getElementById("slideshow").src=images[i];
+    },2000);
 }
 </script>
 
