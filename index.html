@@ -94,6 +94,9 @@ img{
     </p>
 
     <img id="slideshow" src="1.jpeg">
+<audio id="bgm" loop>
+    <source src="lagu.mp3" type="audio/mpeg">
+</audio>
 
     <p style="margin-top:10px;">
         Dari anak Network yang ingin romantis ala ala programmer 🤍
@@ -112,12 +115,15 @@ noBtn.addEventListener("mouseover", function(){
     noBtn.style.top = y + "px";
 });
 
-window.showLove = function(){
+function showLove(){
     document.getElementById("page1").style.display="none";
     document.getElementById("page2").style.display="block";
+
     startSlide();
     createHearts();
-    playMusic();
+
+    let music = document.getElementById("bgm");
+    music.play();
 }
 
 function startSlide(){
