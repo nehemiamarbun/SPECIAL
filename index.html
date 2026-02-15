@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Untuk Kamu ❤️</title>
+
 <style>
 body{
     margin:0;
@@ -17,7 +18,7 @@ body{
 
 .container{
     text-align:center;
-    background:rgba(0,0,0,0.4);
+    background:rgba(0,0,0,0.5);
     padding:30px;
     border-radius:20px;
     color:white;
@@ -50,15 +51,7 @@ img{
     width:100%;
     border-radius:15px;
     margin-top:15px;
-}
-
-.fade{
-    animation:fadein 1.5s forwards;
-}
-
-@keyframes fadein{
-    from{opacity:0;}
-    to{opacity:1;}
+    transition:opacity 0.5s ease-in-out;
 }
 
 .heart{
@@ -84,26 +77,24 @@ img{
 </div>
 
 <div class="container" id="page2" style="display:none;">
-    <div class="fade">
-        <h2>Hii Happy Valentine ❤️</h2>
+    <h2>Hii Happy Valentine ❤️</h2>
 
-        <p>
-            Tuhan baik sekali mempertemukan aku dengan kamu.<br>
-            Kamu bukan cuma bahagiaku,<br>
-            tapi alasan aku ingin jadi pria yang lebih baik setiap hari.
-        </p>
+    <p>
+        Tuhan baik sekali mempertemukan aku dengan kamu.<br>
+        Kamu bukan cuma bahagiaku,<br>
+        tapi alasan aku ingin jadi pria yang lebih baik setiap hari.
+    </p>
 
-        <p style="font-style:italic;">
-            "Lihatlah, cantik engkau, manisku, sungguh cantik engkau, bagaikan merpati matamu."<br>
-            – Kidung Agung 1:15
-        </p>
+    <p style="font-style:italic;">
+        "Lihatlah, cantik engkau, manisku, sungguh cantik engkau, bagaikan merpati matamu."<br>
+        – Kidung Agung 1:15
+    </p>
 
-        <img id="slideshow" src="1.jpg">
+    <img id="slideshow" src="1.jpeg">
 
-        <p style="margin-top:10px;">
-            Dari anak Network yang ingin romantis ala ala prgrammer 🤍<br>
-        </p>
-    </div>
+    <p style="margin-top:10px;">
+        Dari anak Network yang ingin romantis ala ala programmer 🤍
+    </p>
 </div>
 
 <script>
@@ -119,16 +110,36 @@ noBtn.addEventListener("mouseover", function(){
 function showLove(){
     document.getElementById("page1").style.display="none";
     document.getElementById("page2").style.display="block";
-    createHearts();
-    startSlide();
 
-    // Tambah lagu di sini
-    let music = document.createElement("iframe");
-    music.width="0";
-    music.height="0";
-    music.src="https://www.youtube.com/watch?v=SgSOAPwTOdc&list=RDSgSOAPwTOdc&start_radio=1";
-    music.allow="autoplay";
-    document.body.appendChild(music);
+    startSlide();
+    createHearts();
+    playMusic();
+}
+
+function startSlide(){
+    let images=[
+        "1.jpeg",
+        "2.jpeg",
+        "3.jpeg",
+        "4.jpeg",
+        "5.jpeg",
+        "6.jpeg",
+        "7.jpeg",
+        "8.jpeg",
+        "9.jpeg"
+    ];
+
+    let i=0;
+    let slide=document.getElementById("slideshow");
+
+    setInterval(function(){
+        slide.style.opacity=0;
+        setTimeout(function(){
+            i=(i+1)%images.length;
+            slide.src=images[i];
+            slide.style.opacity=1;
+        },500);
+    },2500);
 }
 
 function createHearts(){
@@ -144,23 +155,12 @@ function createHearts(){
     },300);
 }
 
-function startSlide(){
-    let images=[
-        "1.jpg",
-        "2.jpg",
-        "3.jpg",
-        "4.jpg",
-        "5.jpg",
-        "6.jpg",
-        "7.jpg",
-        "8.jpg",
-        "9.jpg"
-    ];
-    let i=0;
-    setInterval(function(){
-        i=(i+1)%images.length;
-        document.getElementById("slideshow").src=images[i];
-    },2000);
+function playMusic(){
+    let music = document.createElement("iframe");
+    music.style.display="none";
+    music.src="https://www.youtube.com/embed/SgSOAPwTOdc?autoplay=1&loop=1&playlist=SgSOAPwTOdc";
+    music.allow="autoplay";
+    document.body.appendChild(music);
 }
 </script>
 
